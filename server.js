@@ -27,7 +27,7 @@ app.route('/api/customers')
             message:'ok'
         }
         response.notification=notification;
-        response.data = [...customers];
+        response.data = customers;
         res.json(response);
     })
     .put((req,res)=>{
@@ -52,9 +52,9 @@ app.route('/api/customers')
             }
             else
             {
-                customers.push(req.body)
+                customers.push(req.body);
                 response.notification=notificationError;
-                response.data = [...customers];
+                response.data = customers;
             }
             
             res.json(response);
@@ -85,7 +85,7 @@ app.route('/api/customers')
             {
                 customers.push(req.body)
                 response.notification=notificationError;
-                response.data = [...customers];
+                response.data = customers;
             }
             
             res.json(response);
