@@ -26,7 +26,7 @@ app.route('/api/customers')
         res.json(response);
     })
     .put((req,res)=>{
-        const notification ={
+        const notificationError ={
             error:false,
             message:'ok'
         }
@@ -34,12 +34,59 @@ app.route('/api/customers')
         console.log(req.params.cliente);
         console.log(req.body);
         console.log(req.headers);
+        //adding new user
+        const obj = req.body;
+        if (obj!=null)
+        {
+            const find = customers.find((item)=>item.id===obj.id);
+            if(find)
+            {
+                notificationError.error=true;
+                notificationError.message="User already exists";
+                response.notification=notificationError;
+            }
+            else
+            {
+                customers.push(req.body)
+                response.notification=notificationError;
+                response.data = [...customers];
+            }
+            
+            res.json(response);
+        }
         
-        response.notification=notification;
-        response.data = [...customers];
-        res.json(response);
     })
-
+    .post((req,res)=>{
+        const notificationError ={
+            error:false,
+            message:'ok'
+        }
+        
+        console.log(req.params.cliente);
+        console.log(req.body);
+        console.log(req.headers);
+        //adding new user
+        const obj = req.body;
+        if (obj!=null)
+        {
+            const find = customers.find((item)=>item.id===obj.id);
+            if(find)
+            {
+                notificationError.error=true;
+                notificationError.message="User already exists";
+                response.notification=notificationError;
+            }
+            else
+            {
+                customers.push(req.body)
+                response.notification=notificationError;
+                response.data = [...customers];
+            }
+            
+            res.json(response);
+        }
+        
+    })
 /*
 app.get('/api/customers',(req,res)=>{
     const notification ={
