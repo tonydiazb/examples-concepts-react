@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser').json();;
 const app = express();
 
-const port = 5000;
+const port = 8080;
 let response = {
     notification:{},
     data:{}
@@ -15,6 +15,11 @@ let customers =[
     {id:4, firstName:'Gabriel',lastName:'Diaz'},
 ];
 app.use(express.json())
+app.get('/', (req, res) => {
+    res.send('Hello World Tony!');
+  });
+
+
 app.route('/api/customers')
     .get((req,res)=>{
         const notification ={
